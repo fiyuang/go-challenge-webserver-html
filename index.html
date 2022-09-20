@@ -1,3 +1,4 @@
+{{define "home"}}
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,13 +13,12 @@
     />
   </head>
   <body>
-    <h1>Hello</h1>
+    <h1>Hello {{.nama}}</h1>
     <form>
-        <p>Nama</p>
-        <p>Email</p>
-        <p>Alamat</p>
-        <p>Alasan</p>
-
+        <p>Email: {{.email}}</p>
+        <p>Alamat: {{.alamat}}</p>
+        <p>Pekerjaan: {{.pekerjaan}}</p>
+        <p>Alasan: {{.alasan}}</p>
         <button type="button" class="btn btn-danger">
             <a href="#" style="color: white;">Logout</a>
         </button>
@@ -30,3 +30,4 @@
     </script>
   </body>
 </html>
+{{end}}
