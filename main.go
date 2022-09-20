@@ -38,6 +38,8 @@ func renderTemplate(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+
+	http.Error(w, "Invalid method", http.StatusBadRequest)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -83,10 +85,24 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+
+	http.Error(w, "Invalid method", http.StatusBadRequest)
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		var template = template.Must(template.New("form").ParseFiles("login.html"))
+		var err = template.Execute(w, nil)
 
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		return
+	}
+
+	http.Error(w, "Invalid method", http.StatusBadRequest)
 }
 
 func getDataPeserta(emails []string) []Biodata {
